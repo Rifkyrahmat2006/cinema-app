@@ -1,0 +1,93 @@
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background: #f8f9fa;
+  overflow: hidden;
+}
+
+/* Sidebar background */
+.sidebar-bg {
+  background: linear-gradient(180deg, #0d6efd 0%, #0a58ca 100%);
+}
+
+/* Card hover */
+.card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* NavLink active */
+.nav-link-active {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0.375rem;
+}
+
+/* Table responsive fixes */
+.table th {
+  white-space: nowrap;
+}
+
+/* Badge alignment */
+.badge {
+  font-weight: 500;
+}
+
+/* Input group icon */
+.input-group-text {
+  border-right: none;
+}
+
+.input-group-text + .form-control {
+  border-left: none;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #86b7fe;
+}
+
+/* Remove Bootstrap navbar border */
+.navbar {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove any border between sidebar and content */
+.sidebar-bg {
+  border-right: none !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}

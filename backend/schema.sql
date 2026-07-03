@@ -1,0 +1,52 @@
+CREATE DATABASE IF NOT EXISTS movie_db;
+USE movie_db;
+
+-- Table: users (per PRD)
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin','user') NOT NULL DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Table: movies (dinamis)
+CREATE TABLE IF NOT EXISTS movies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    movie_name VARCHAR(255) NOT NULL,
+    genre VARCHAR(100) NOT NULL DEFAULT 'Action',
+    poster VARCHAR(500),
+    rating DECIMAL(3,1) DEFAULT 0,
+    duration VARCHAR(20),
+    sinopsis TEXT,
+    price DECIMAL(10,2) NOT NULL DEFAULT 38500,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Table: showtimes (jadwal tayang per film)
+CREATE TABLE IF NOT EXISTS showtimes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    movie_id INT NOT NULL,
+    show_time TIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+);
+
+-- Table: orders (per PRD)
+CREATE TABLE IF NOT EXISTS orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    movie_name VARCHAR(255) NOT NULL,
+    watch_at DATETIME NOT NULL,
+    seat VARCHAR(10) NOT NULL,
+    ticket INT NOT NULL DEFAULT 1,
+    price DECIMAL(10, 2) NOT NULL,
+    payment_proof VARCHAR(255),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at DATETIME NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
