@@ -1,6 +1,88 @@
 # DOKUMENTASI APLIKASI BIOSKOP (CINEMA APP)
 
-Dokumen ini berisi alur proses pembuatan sistem, panduan pengguna (User Guide), dan panduan administrator (Admin Guide) untuk aplikasi pemesanan tiket bioskop berbasis web.
+Dokumen ini berisi alur proses pembuatan sistem, panduan pengguna (User Guide), panduan administrator (Admin Guide), serta langkah-langkah instalasi dan menjalankan aplikasi.
+
+---
+
+## CARA MENJALANKAN APLIKASI
+
+Ikuti langkah-langkah berikut untuk memasang dan menjalankan aplikasi di komputer lokal Anda.
+
+### 1. Prasyarat (Prerequisites)
+
+Pastikan Anda sudah menginstal:
+
+- **Node.js** (versi 16 atau lebih baru)
+- **MySQL** (melalui XAMPP, Laragon, atau instalasi MySQL mandiri)
+
+---
+
+### 2. Konfigurasi Database
+
+1. Aktifkan MySQL server Anda (misal: start modul MySQL di XAMPP Control Panel).
+2. Buat database baru bernama `movie_db` melalui phpMyAdmin atau terminal MySQL:
+   ```sql
+   CREATE DATABASE movie_db;
+   ```
+3. Impor struktur tabel dari file `backend/schema.sql` ke database `movie_db`.
+
+---
+
+### 3. Setup & Menjalankan Backend
+
+1. Buka terminal dan masuk ke direktori `backend`:
+   ```bash
+   cd backend
+   ```
+2. Instal semua dependensi library:
+   ```bash
+   npm install
+   ```
+3. Sesuaikan konfigurasi database pada file `.env` di dalam folder `backend` jika diperlukan (seperti `DB_USER`, `DB_PASSWORD`, dll).
+4. Jalankan proses **seeding** untuk mengisi data awal (user admin, user biasa, film default, jadwal tayang, dan transaksi):
+   ```bash
+   npm run seed
+   ```
+5. Jalankan server backend:
+   ```bash
+   npm run dev
+   ```
+   _Server backend akan berjalan di `http://localhost:3000`._
+
+---
+
+### 4. Setup & Menjalankan Frontend
+
+1. Buka terminal baru dan masuk ke direktori `frontend`:
+   ```bash
+   cd frontend
+   ```
+2. Instal semua dependensi library:
+   ```bash
+   npm install
+   ```
+3. Pastikan file `.env` di dalam folder `frontend` mengarah ke URL API backend yang benar:
+   ```env
+   VITE_API_URL=http://localhost:3000/api
+   ```
+4. Jalankan server frontend:
+   ```bash
+   npm run dev
+   ```
+   _Aplikasi frontend akan berjalan di `http://localhost:5173` (atau port lain yang tertera di terminal)._
+
+---
+
+### 5. Akun Default untuk Uji Coba
+
+Setelah melakukan seeding, Anda dapat masuk menggunakan akun berikut:
+
+- **Administrator**:
+  - Username: `ahmad`
+  - Password: `adminpass`
+- **Pelanggan (User)**:
+  - Username: `siti`
+  - Password: `userpass`
 
 ---
 
